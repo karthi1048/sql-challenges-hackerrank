@@ -20,3 +20,19 @@ The resulting error between the two calculations is 2159.00 - 98.00 = 2061.00 . 
 */
 SELECT CEILING(AVG(salary) - AVG(REPLACE(salary,'0','')))
 FROM EMPLOYEES;
+
+/*
+We define an employee's total earnings to be their monthly salary * months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. 
+Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. 
+Then print these values as  2 space-separated integers.
+
+Sample Output
+69952 1
+
+The maximum earnings value is 69952 . 
+The only employee with earnings 69952 is Kimberly, so we print the maximum earnings value (69952) and a count of the number of employees who have earned 69952 (which is 1) as two space-separated values.
+*/
+SELECT MAX(salary * months), COUNT(*) 
+FROM EMPLOYEE
+WHERE 
+(salary * months) = (SELECT MAX(salary * months) FROM EMPLOYEE);
